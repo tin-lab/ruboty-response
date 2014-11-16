@@ -5,7 +5,7 @@ module Ruboty
 
       on /(?<keyword>.+)/, name: 'catchall', hidden: true, all: true
 
-      on /respond \/(?<regex>.+)\/ (?<response>.+)/, name: 'respond', description: 'Register a response'
+      on /add response \/(?<regex>.+)\/ (?<response>.+)/, name: 'add', description: 'Add a response'
       on /delete response (?<id>.+)/, name: 'delete', description: 'Delete a response'
       on /list responses/, name: 'list', description: 'Show registered responses'
 
@@ -17,7 +17,7 @@ module Ruboty
         end
       end
 
-      def respond(message)
+      def add(message)
         id = generate_id
         hash = {
           regex: message[:regex],
