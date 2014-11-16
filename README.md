@@ -13,7 +13,7 @@ gem 'ruboty-response'
 ## Usage
 
 ```
-@ruboty respond /<regex>/ <response>
+@ruboty add response /<regex>/ <response>
 @ruboty list responses
 @ruboty delete response <id>
 ```
@@ -21,7 +21,7 @@ gem 'ruboty-response'
 ## Example
 
 ```
-> @ruboty respond /^foo$/ bar
+> @ruboty add response /^foo$/ bar
 Response 533 registered.
 > foo
 bar
