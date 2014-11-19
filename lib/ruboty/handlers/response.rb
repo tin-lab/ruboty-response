@@ -39,16 +39,14 @@ module Ruboty
       end
 
       def list(message)
-        body =
-          if responses.empty?
-            'No response registered.'
-          else
-            responses.map do |id, hash|
-              "#{id}: /#{hash[:regex]}/ -> #{hash[:response]}"
-            end.join("\n")
-          end
-
-        message.reply(body)
+        if responses.empty?
+          message.reply('Nothing is registered.')
+        else
+          response_list = responses.map do |id, hash|
+            "#{id}: /#{hash[:regex]}/ -> #{hash[:response]}"
+          end.join("\n")
+          message.reply(response_list, code: true)
+        end
       end
 
       private
