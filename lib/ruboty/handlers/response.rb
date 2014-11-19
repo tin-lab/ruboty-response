@@ -27,14 +27,14 @@ module Ruboty
         # Insert to the brain
         responses[id] = hash
 
-        message.reply("Response #{id} registered.")
+        message.reply("Response #{id} is registered.")
       end
 
       def delete(message)
         if responses.delete(message[:id].to_i)
-          message.reply('Deleted.')
+          message.reply("Response #{message[:id]} is unregistered.")
         else
-          message.reply('Not found.')
+          message.reply("Response #{message[:id]} is not found.")
         end
       end
 

@@ -22,7 +22,7 @@ gem 'ruboty-response'
 
 ```
 > @ruboty add response /^foo$/ bar
-Response 533 registered.
+Response 533 is registered.
 > foo
 bar
 > fooo
