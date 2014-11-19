@@ -7,7 +7,7 @@ module Ruboty
 
       on /add response \/(?<regex>.+)\/ (?<response>.+)/, name: 'add', description: 'Add a response'
       on /delete response (?<id>.+)/, name: 'delete', description: 'Delete a response'
-      on /list responses/, name: 'list', description: 'Show registered responses'
+      on /list responses\z/, name: 'list', description: 'Show registered responses'
 
       def catchall(message)
         responses.each do |id, hash|
