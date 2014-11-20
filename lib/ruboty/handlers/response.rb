@@ -19,8 +19,10 @@ module Ruboty
               result = `#{hash[:response].match(/\A`(.+)`\z/)[1]}`.chomp!
               message.reply(result)
             end
-            sleep 3
-            thread.kill
+            Thread.start do
+              sleep 3
+              thread.kill
+            end
           else
             message.reply(hash[:response])
           end
