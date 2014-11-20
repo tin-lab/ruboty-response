@@ -16,7 +16,7 @@ module Ruboty
           # If the response is a code
           if hash[:response] =~ /\A`.+`\z/
             thread = Thread.start do
-              result = `#{hash[:response].match(/\A`(.+)`\z/)[1]}`.chomp!
+              result = `#{hash[:response].match(/\A`(.+)`\z/)[1]}`.chomp!.strip!
               message.reply(result)
             end
             Thread.start do
