@@ -5,13 +5,23 @@ module Ruboty
 
       on /(?<keyword>.+)/, name: 'catchall', hidden: true, all: true
 
-      on /add response \/(?<regex>.+)\/ (?<response>.+)/, name: 'add', description: 'Add a response'
+      on /add response \/(?<regex>.+)\/ (?<response>`?.+`?)/, name: 'add', description: 'Add a response'
       on /delete response (?<id>.+)/, name: 'delete', description: 'Delete a response'
       on /list responses\z/, name: 'list', description: 'Show registered responses'
 
       def catchall(message)
         responses.each do |id, hash|
-          if /#{hash[:regex]}/ =~ message[:keyword]
+          next unless /#{hash[:regex]}/ =~ message[:keyword]
+
+          # If the response is a code
+          if hash[:response] =~ /\A`.+`\z/
+            thread = Thread.start do
+              result = `#{hash[:response].match(/\A`(.+)`\z/)[1]}`.chomp!
+              message.reply(result)
+            end
+            sleep 3
+            thread.kill
+          else
             message.reply(hash[:response])
           end
         end
