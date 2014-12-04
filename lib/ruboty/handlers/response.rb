@@ -20,7 +20,7 @@ module Ruboty
               message.reply(result)
             end
             Thread.start do
-              sleep 3
+              sleep 10
               thread.kill
             end
           else
