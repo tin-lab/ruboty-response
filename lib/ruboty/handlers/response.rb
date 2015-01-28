@@ -11,7 +11,7 @@ module Ruboty
 
       def catchall(message)
         responses.each do |id, hash|
-          next unless /#{hash[:regex]}/ =~ message[:keyword] rescue false
+          next unless message[:keyword] =~ /#{hash[:regex]}/ rescue false
 
           # If the response is a code
           if match_data = hash[:response].match(/\A`(?<code>.+)`\z/)
