@@ -14,9 +14,9 @@ module Ruboty
           next unless /#{hash[:regex]}/ =~ message[:keyword] rescue false
 
           # If the response is a code
-          if hash[:response] =~ /\A`.+`\z/
+          if match_data = hash[:response].match(/\A`(?<code>.+)`\z/)
             thread = Thread.start do
-              result = `#{hash[:response].match(/\A`(?<code>.+)`\z/)[:code]}`.chomp!
+              result = `#{match_data[:code]}`.chomp!
               message.reply(result)
             end
             Thread.start do
