@@ -18,13 +18,9 @@ module Ruboty
           # If the response is a code
           if match_data = hash[:response].match(/\A`(?<code>.+)`\z/)
             thread = Thread.start do
-              stdout, stderr, status = Open3.capture3(match_data[:code])
+              stdout, stderr, _status = Open3.capture3(match_data[:code])
               message.reply(stdout.chomp) if stdout
               message.reply(stderr.chomp) if stderr
-
-              unless status.success?
-                message.reply("Command Failed:\n#{match_data[:code]}", code: true)
-              end
             end
             Thread.start do
               sleep 10
