@@ -1,3 +1,5 @@
+require 'open3'
+
 module Ruboty
   module Handlers
     class Response < Base
