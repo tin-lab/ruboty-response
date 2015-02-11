@@ -32,6 +32,8 @@ module Ruboty
             message.reply(hash[:response])
           end
         end
+      rescue => e
+        Ruboty.logger.error("Error: #{e.class}: #{e.message}}")
       end
 
       def add(message)
