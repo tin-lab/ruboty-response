@@ -7,7 +7,7 @@ module Ruboty
 
       on /(?<keyword>.+)/, name: 'catchall', hidden: true, all: true
 
-      on /add response \/(?<regex>.+?)\/ (?<response>`?.+`?)/, name: 'add', description: 'Add a response'
+      on /add response \/(?<regex>.+?)\/ (?<response>.+)/, name: 'add', description: 'Add a response'
       on /delete response (?<id>.+)/, name: 'delete', description: 'Delete a response'
       on /list responses\z/, name: 'list', description: 'Show registered responses'
 
@@ -15,20 +15,7 @@ module Ruboty
         responses.each do |id, hash|
           next unless message[:keyword] =~ /#{hash[:regex]}/ rescue false
 
-          # If the response is a code
-          if match_data = hash[:response].match(/\A`(?<code>.+)`\z/)
-            thread = Thread.start do
-              stdout, stderr, _status = Open3.capture3(match_data[:code])
-              message.reply(stdout.chomp) if stdout
-              message.reply(stderr.chomp) if stderr
-            end
-            Thread.start do
-              sleep 10
-              thread.kill
-            end
-          else
-            message.reply(hash[:response])
-          end
+          message.reply(hash[:response])
         end
       rescue => e
         Ruboty.logger.error("Error: #{e.class}: #{e.message}}")
