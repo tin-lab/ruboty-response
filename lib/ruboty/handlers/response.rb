@@ -39,8 +39,6 @@ module Ruboty
           1.upto(message.original[:mention_to].length - 1) do |i|
             mentionIds << message.original[:mention_to][i]['id']
           end
-        else
-          memtionIds = nil
         end
 
         id = generate_id
@@ -68,6 +66,7 @@ module Ruboty
           message.reply('Nothing is registered.')
         else
           response_list = responses.map do |id, hash|
+            if hash[:mentionIds].nil? then hash[:mentionIds] = 'everyone' end
             "#{id}: /#{hash[:regex]}/ -> #{hash[:response]} -> #{hash[:mentionIds]}"
           end.join("\n")
           message.reply(response_list, code: true)
