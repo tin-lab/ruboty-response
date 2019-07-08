@@ -66,8 +66,8 @@ module Ruboty
           message.reply('Nothing is registered.')
         else
           response_list = responses.map do |id, hash|
-            if hash[:mentionIds].nil? then hash[:mentionIds] = 'everyone' end
-            "#{id}: /#{hash[:regex]}/ -> #{hash[:response]} -> #{hash[:mentionIds]}"
+            if hash[:mentionIds].nil? then to = 'everyone' else to = hash[:mentionIds] end
+            "#{id}: /#{hash[:regex]}/ -> #{hash[:response]} -> #{to}"
           end.join("\n")
           message.reply(response_list, code: true)
         end
