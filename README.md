@@ -13,9 +13,9 @@ gem 'ruboty-response', '=<version>', github: "tin-lab/ruboty-response.git"
 ## Usage
 
 ```
-@ruboty add response <mention(optional)> /<regex>/ <response>
-@ruboty list responses
-@ruboty delete response <id>
+ruboty add response <mention(optional)> /<regex>/ <response>
+ruboty list responses
+ruboty delete response <id>
 ```
 
 ## Env
