@@ -27,12 +27,15 @@ REACTION_TO_BOT - Receive reaction from bots(default: false)
 ## Example
 
 ```
-> @ruboty add response /^foo$/ bar
+> ruboty add response /^foo$/ bar
 Response 256 is registered.
 > foo
 bar
 > fooo
 ```
+
+## Example On Your Slack
+
 ```
 > @ruboty add response @hoge /^foo$/ bar
 Response 637 is registered.
