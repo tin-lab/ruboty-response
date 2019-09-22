@@ -9,7 +9,7 @@ module Ruboty
 
       on /(?<keyword>.+)/, name: 'catchall', hidden: true, all: true
 
-      on /add response ((?<mention>.+) )?\/(?<regex>.+?)\/ (?<response>.+)/, name: 'add', description: 'Add a response'
+      on /add response ((?<mention>.+) )?\/(?<regex>.+?)\/ (?<response>.+)/m, name: 'add', description: 'Add a response'
       on /delete response (?<id>.+)/, name: 'delete', description: 'Delete a response'
       on /list responses\z/, name: 'list', description: 'Show registered responses'
 
